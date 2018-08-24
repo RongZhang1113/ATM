@@ -52,7 +52,7 @@ def login():
             if count > 2:
                 # 以下功能不完善
                 user_inter.locked_interface(name)
-                print('尝试次数过多，已锁定')
+                print('尝试次数过多，已退出')
                 break
 
 
@@ -222,6 +222,9 @@ def run():
         ''')
         choice = input('please choose>>:').strip()
         if choice == '0':
+            # 申明全局变量，用户退出后将用户信息清空
+            global user_data
+            user_data['name'] = None
             break
         if choice not in func_dic:
             print('没有该选项，请重试')
