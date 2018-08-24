@@ -36,7 +36,8 @@ def login():
         return
     count = 0
     while True:
-        name = input('请输入用户名>>:').strip()
+        name = input('请输入用户名或按(q/Q)退出>>:').strip()
+        if name == 'q' or name == 'Q': break
         if len(name) == 0: continue
         pwd = input('请输入密码>>:').strip()
         if len(pwd) == 0: continue
