@@ -2,7 +2,7 @@ import time
 from interface import user_inter, bank_inter, shop_inter
 from lib.common import login_auth
 
-
+# 记录当前用户登录时的信息
 user_data = {'name': None}
 
 
