@@ -71,6 +71,11 @@ def withdraw():
             flag, msg = bank_inter.withdraw_interface(user_data['name'], balance)
             if flag:
                 print(msg)
+                again = input('继续取款(y)或按任意键退出>>:').strip()
+                if again == 'y':
+                    withdraw()
+                else:
+                    return
             else:
                 print(msg)
         else:
@@ -93,6 +98,11 @@ def repay():
             flag, msg = bank_inter.repay_interface(user_data['name'], balance)
             if flag:
                 print(msg)
+                again = input('继续还款(y)或按任意键退出>>:').strip()
+                if again == 'y':
+                    repay()
+                else:
+                    return
             else:
                 print(msg)
         else:
@@ -106,13 +116,18 @@ def transfer():
     print('转账')
     to_name = input('请输入对方账户名或按(q/Q)退出>>:').strip()
     if to_name == 'q' or to_name == 'Q': return
-    balance = input('请输入取款金额或按(q/Q)退出>>:').strip()
+    balance = input('请输入转账金额或按(q/Q)退出>>:').strip()
     if balance == 'q' or balance == 'Q': return
     if balance.isdigit():
         balance = int(balance)
         flag, msg = bank_inter.transfer_interface(user_data['name'], to_name, balance)
         if flag:
             print(msg)
+            again = input('继续转账(y)或按任意键退出>>:').strip()
+            if again == 'y':
+                transfer()
+            else:
+                return
         else:
             print(msg)
     else:
@@ -151,8 +166,10 @@ def shopping():
     ]
     cost = 0
     shopping_cart = {}
+    # 用户的当前可用余额
     curr_balance = bank_inter.check_balance_interface(user_data['name'])
     while True:
+        # 循环打出可供用户选择的印商品信息
         for k, v in enumerate(goods_list):
             print('%s %s' % (k, v))
         choice = input('选择购买的商品编号或按(q/Q)退出>>:').strip()
